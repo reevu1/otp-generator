@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import crypto from "crypto";
 
@@ -11,7 +10,6 @@ export default function Generator() {
     const hash = crypto.createHash("sha256").update(input).digest("hex");
     return parseInt(hash.slice(0, 8), 16) % 100000000; // Ensure it is 8 digits
   };
-
   // Generate OTP
   const generateOtp = async () => {
     try {
