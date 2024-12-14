@@ -1,3 +1,5 @@
+# If you want to check out the project go here: [link](https://otp-generator-eta.vercel.app/)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -47,3 +49,5 @@ and download this repo and run the command ```npm run dev``` in your command pro
 3. Check whether the OTP generated is actually safe or not, i.e., check whether a scenario might occur when two epople get the same OTP simultaneously. Improve the logic for that case.
 4. Add a QR code feature so it allows the OTP being displayed as a QR code and the receiver can scan QR codes and check whther OTP is valid or not.
 5. Suggest ways to make it even more secure by implementing 2-factor authentication like OTPs directly sent to email or even facial scan to check whether the same person who has received the OTP is entering it or not.
+
+
