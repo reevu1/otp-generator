@@ -38,14 +38,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-## Issues you can solve or things you cna help out with:
+## Issues you can solve or things you can help out with:
 
 First of all the OTP generation logic is based on current time and the IP address of the device accessing this web app. To run this, you need to install and set up Next JS
 and download this repo and run the command ```npm run dev``` in your command prompt after changing to the directory where you have saved this project.
 
-### List of things you cna try out and improve upon:
+### List of things you can try out and improve upon:
 1. Make the frontend better using various styles and effects.
-2. Add a rate limiter to prevent bruteforcing of OTP
+2. Add a rate limiter to prevent brute-forcing of OTP
 3. Check whether the OTP generated is actually safe or not, i.e., check whether a scenario might occur when two people get the same OTP simultaneously. Improve the logic for that case.
 4. Add a QR code feature so it allows the OTP being displayed as a QR code and the receiver can scan QR codes and check whether OTP is valid or not.
 5. Suggest ways to make it even more secure by implementing 2-factor authentication like OTPs directly sent to email or even facial scan to check whether the same person who has received the OTP is entering it or not.
