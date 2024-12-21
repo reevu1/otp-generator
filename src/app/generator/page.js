@@ -31,11 +31,11 @@ export default function Generator() {
   };
 
   return (
-    <div>
-      <h1>Secure OTP Generator</h1>
-      <button onClick={generateOtp}>Generate OTP</button>
+    <div className="block">
+      <h1 className="otp fade-in">Secure OTP Generator</h1>
+      <button className="links fade-in" onClick={generateOtp}><span className="front">Generate OTP</span></button>
       {finalOtp && (
-        <p>
+        <p className="valid">
           Your OTP: <strong>{finalOtp}</strong> <br />
           Note: Valid for 2 minutes.
         </p>
