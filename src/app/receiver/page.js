@@ -45,20 +45,22 @@ export default function Receiver() {
   };
 
   return (
-    <div>
-      <h1>Secure OTP Receiver</h1>
-      <div>
+    <div className="block">
+      <h1 className="otp fade-in">Secure OTP Receiver</h1>
+      <div className="input-box fade-in">
         <label>
-          Enter OTP:
+          
           <input
+            placeholder="Enter OTP"
+            className="field"
             type="text"
             value={inputOtp}
             onChange={(e) => setInputOtp(e.target.value)}
           />
         </label>
       </div>
-      <button onClick={verifyOtp}>Verify OTP</button>
-      {message && <p>{message}</p>}
+      <button className="links fade-in" onClick={verifyOtp}><span className="front">Verify OTP</span></button>
+      {message && <p className="valid">{message}</p>}
     </div>
   );
 }
