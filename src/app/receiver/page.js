@@ -23,26 +23,53 @@ export default function Receiver() {
       throw new Error("Failed to fetch IP address");
     }
   };
+  
+  const [attempts, setAttempts] = useState(0);
+  const [lastResetTime, setLastResetTime] = useState(Math.floor(Date.now() / (1000 * 60 * 2))); // Initialize to the current 2-minute interval
+
   const verifyOtp = async () => {
     try {
+      const currentTime = Math.floor(Date.now() / (1000 * 60 * 2)); // Time rounded to 2-minute intervals
+
+      // Reset attempts if a new 2-minute interval has started
+      if (currentTime !== lastResetTime) {
+        setAttempts(0);
+        setLastResetTime(currentTime);
+      }
+
+      // Check if the user has exceeded the maximum attempts
+      if (attempts >= 3) {
+        setMessage("Too many attempts. Please wait for 2 minutes and try again.");
+        return;
+      }
+
       if (inputOtp.length !== 8) {
         setMessage("Invalid input. OTP must be 8 digits long.");
         return;
       }
+
       const ipAddress = await fetchUserIp(); // Get IP address
-      const currentTime = Math.floor(Date.now() / (1000 * 60 * 2)); // Time rounded to 2-minute intervals
+
       // Validate OTP for both the current and previous time windows
       const validIntervals = [currentTime, currentTime - 1]; // Account for clock drift
       const isValid = validIntervals.some((time) => {
         const recomputedOtp = generate8DigitOtp(`${time}-${ipAddress}`).toString().padStart(8, "0");
         return recomputedOtp === inputOtp;
       });
-      setMessage(isValid ? "OTP is valid!" : "Invalid OTP. Please try again.");
+
+      if (isValid) {
+        setMessage("OTP is valid!");
+        setAttempts(0); // Reset attempts on successful validation
+      } else {
+        setAttempts((prevAttempts) => prevAttempts + 1); // Increment attempts on failure
+        setMessage("Invalid OTP. Please try again.");
+      }
     } catch (error) {
       console.error("Error validating OTP:", error);
       setMessage("Error validating OTP. Please check your input.");
     }
   };
+
 
   return (
     <div className="block">
