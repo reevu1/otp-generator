@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
 import crypto from "crypto";
+import QRscan from "../components/qr-scan";
 
 export default function Receiver() {
   const [inputOtp, setInputOtp] = useState("");
   const [message, setMessage] = useState("");
   const [userIp, setUserIp] = useState("");
+  const [useScan,setUseScan] = useState(false);
   // Helper function to hash input and truncate to 8 digits
   const generate8DigitOtp = (input) => {
     const hash = crypto.createHash("sha256").update(input).digest("hex");
@@ -85,6 +87,10 @@ export default function Receiver() {
   };
   
 
+  const scanOtp = () => {
+    setUseScan(true);
+  };
+
   return (
     <div className="block">
       <h1 className="otp fade-in">Secure OTP Receiver</h1>
@@ -102,6 +108,15 @@ export default function Receiver() {
       </div>
       <button className="links fade-in" onClick={verifyOtp}><span className="front">Verify OTP</span></button>
       {message && <p className="valid">{message}</p>}
+      <div>
+      
+      <button className="links fade-in" onClick={scanOtp}><span className="front">Verify OTP via QR-Code</span>
+      </button>
+      
+      <div>
+      {useScan && (<QRscan method={(result)=>{setInputOtp(result[0].rawValue);setUseScan(false);}}/>)}
+      </div>
+      </div>
     </div>
   );
 }
